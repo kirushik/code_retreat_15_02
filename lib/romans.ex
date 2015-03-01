@@ -1,4 +1,17 @@
-defmodule Romans do
+defmodule Compaction do
+  defmacro compaction(order, _char, _n, _replacement) do
+    function_name = "compact_#{order}" |> String.to_atom
+    quote do
+      defp unquote(function_name)(whatever) do
+        whatever
+      end
+    end
+  end
+end
+
+defmodule Romans do  
+  import Compaction
+
   def from_arabic(arabic) do
     [thousands, hundreds, tens, ones] = decompress(arabic)
 
@@ -27,9 +40,10 @@ defmodule Romans do
 
   ########################################################
 
-  defp compact_tens(whatever) do
-    whatever
-  end
+  compaction :tens, ?X, 5, 'L'
+  # defp compact_tens(whatever) do
+  #   whatever
+  # end
 
   ########################################################
   defp compact_ones([?I, ?I, ?I, ?I, ?I, ?I, ?I, ?I, ?I| tail]) do
@@ -44,7 +58,6 @@ defmodule Romans do
     'IV' ++ tail
   end
 
-  defp compact_ones(whatever) do
-    whatever
-  end
+  compaction :ones, ?I, 4, 'IV'
+
 end
