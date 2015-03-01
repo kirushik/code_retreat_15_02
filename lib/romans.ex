@@ -32,15 +32,15 @@ defmodule Romans do
   end
 
   ########################################################
-  defp compact_ones([73, 73, 73, 73, 73, 73, 73, 73, 73| tail]) do
+  defp compact_ones([?I, ?I, ?I, ?I, ?I, ?I, ?I, ?I, ?I| tail]) do
     'IX' ++ tail
   end
 
-  defp compact_ones([73, 73, 73, 73, 73| tail]) do
+  defp compact_ones([?I, ?I, ?I, ?I, ?I| tail]) do
     'V' ++ tail
   end
 
-  defp compact_ones([73, 73, 73, 73| tail]) do
+  defp compact_ones([?I, ?I, ?I, ?I| tail]) do
     'IV' ++ tail
   end
 
